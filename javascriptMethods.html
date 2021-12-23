@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+  <header>
+    <div>
+      <h1 class="bg-info text-white text-center pt-4 pb-4 ">Map , Filter and Reduce Functions</h1>
+    </div>
+  </header>
+  <main>
+    <div class="p-5">
+      <h2>Output</h2>
+      <p> Map : Conducting a test for multiple candidates </p>
+      <div id="mapArray">
+      </div>
+      <hr>
+      <p>Filter : Selecting candidates who passed the test 60 </p>
+      <div id="filterArray">
+      </div>
+      <hr>
+      Reduce : Creating a team from the selected candidates
+      <div id="reduceArray">
+      </div>
+    </div>
+  </main>
+</body>
+<script>
+  let users = [{ "user": "Rohit" }, { "user": "Mohit" }, { "user": "Ankit" }, { "user": "Shivam" }, { "user": "Sonu" }];
+
+  console.log(users);
+
+  let resultUsers = users.map(user => {
+    user.marks = Math.random() * 100;
+    return user
+  });
+
+  console.log(resultUsers, "resultUsers")
+
+  document.getElementById("mapArray").innerHTML = JSON.stringify(resultUsers);
+  //filter
+  let passStudents = resultUsers.filter(user => {
+    if (user.marks > 60) {
+      return user;
+    }
+  })
+
+  document.getElementById("filterArray").innerHTML = JSON.stringify(passStudents);
+  console.log(passStudents, "filter")
+
+
+  //reduce
+  let teamMembers = passStudents.reduce((teamMembers, user) => {
+    teamMembers.push(user);
+    return teamMembers
+  }, [])
+
+  document.getElementById("reduceArray").innerHTML = JSON.stringify(teamMembers);
+  console.log(teamMembers)
+</script>
+
+</html>
